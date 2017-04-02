@@ -17,10 +17,13 @@ the begining of function we are opening the CSV file.
 Then using forloop we read the data from csv file and then inserting the data by query into database.
  
 ## After inserting data the database screenshot
-![Movies](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/movies.JPG "Movies")
-![Links](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/links.JPG "Links")
-![Ratings](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/ratings.JPG "Ratings")
-![Tags](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/tags.JPG "Tags")
+1. ![Movies](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/movies.JPG "Movies")
+
+2. ![Links](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/links.JPG "Links")
+
+3. ![Ratings](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/ratings.JPG "Ratings")
+
+4. ![Tags](https://github.com/sabiul/Insert-data-into-MySQL-from-CSV-file-using-python-3/blob/master/screenshot/tags.JPG "Tags")
 
 
  ## Future Plan:
