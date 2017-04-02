@@ -1,35 +1,82 @@
 __author__ = 'Rashed'
-import csv
+#!/usr/bin/python3
+
 from data import mycursor,connection
-# LOAD DATA INFILE 'C:\Users\Rashed\PycharmProjects\database\data\ml-latest-small.csv'
-# INTO TABLE discounts
-# FIELDS TERMINATED BY ','
-# ENCLOSED BY '"'
-# LINES TERMINATED BY '\n'
-# IGNORE 1 ROWS;
+import csv
+def insert_movies():
+    with open('./ml-latest-small/movies.csv', newline='',  encoding="utf8") as csvfile:
+        spamreader = csv.reader(csvfile)
+        for row in spamreader:
+            # Prepare SQL query to INSERT a record into the database.
+            sql = "INSERT INTO movies(id,title, geners) VALUES ('%s', '%s', '%s' );" % (row[0], row[1], row[2])
+            print(sql)
+            try:
+               # Execute the SQL command
+               mycursor.execute(sql)
+               # Commit your changes in the database
+               connection.commit()
+            except:
+               # Rollback in case there is any error
+               connection.rollback()
 
-# def insert_movies():
-#     header = ('title', 'geners')
-#     with open('./ml-latest-small/movies.csv', newline='', encoding="utf8") as csvfile:
-#         spamreader = csv.reader(csvfile)
-#         for row in spamreader:
-#             movie = dict(zip(header, row[1:]))
-#             print(spamreader)
-#             # Movie.objects.create(**movie)
+
+def insert_links():
+    with open('./ml-latest-small/links.csv', newline='',  encoding="utf8") as csvfile:
+        spamreader = csv.reader(csvfile)
+        for row in spamreader:
+            # Prepare SQL query to INSERT a record into the database.
+            sql = "INSERT INTO links (id,imdbid, tmdbid,movie_id) VALUES ('%s','%s', '%s', '%s' );" % (row[0], row[1], row[2], row[2])
+            print(sql)
+            try:
+               # Execute the SQL command
+               mycursor.execute(sql)
+               # Commit your changes in the database
+               connection.commit()
+            except:
+               # Rollback in case there is any error
+               connection.rollback()
+
+
+def insert_ratings():
+    with open('./ml-latest-small/ratings.csv', newline='',  encoding="utf8") as csvfile:
+        next(csvfile)
+        spamreader = csv.reader(csvfile)
+        for row in spamreader:
+            # Prepare SQL query to INSERT a record into the database.
+            sql = "INSERT INTO ratings(user_id,movie_id, ratings,timestapm) VALUES ('%s','%s', '%s', '%s' );" % (row[0], row[1], row[2], row[3])
+            print(sql)
+            try:
+               # Execute the SQL command
+               mycursor.execute(sql)
+               # Commit your changes in the database
+               connection.commit()
+            except:
+               # Rollback in case there is any error
+               connection.rollback()
+
+
+def insert_tags():
+    with open('./ml-latest-small/tags.csv', newline='',  encoding="utf8") as csvfile:
+        next(csvfile)
+        spamreader = csv.reader(csvfile)
+        for row in spamreader:
+            # Prepare SQL query to INSERT a record into the database.
+            sql = "INSERT INTO tags(user_id,movie_id, tags,timestapm) VALUES ('%s','%s', '%s', '%s' );" % (row[0], row[1], row[2], row[3])
+            print(sql)
+            try:
+               # Execute the SQL command
+               mycursor.execute(sql)
+               # Commit your changes in the database
+               connection.commit()
+            except:
+               # Rollback in case there is any error
+               connection.rollback()
 
 
 
-
-with open('./ml-latest-small/movies.csv', newline='',  encoding="utf8") as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    for row in spamreader:
-        # sql = "INSERT INTO testSmall VALUES (%s);" % ', '.join('?' for _ in row)
-        # mycursor.execute (sql, row)
-
-        # sql = "INSERT INTO `movies` (`title`, `geners`) VALUES ( ?, ?);"
-        mycursor.execute("INSERT INTO `movies` (`id`, `title`, `geners`) VALUES ( %s, %s, %s);", row)
-        #close the connection to the database.
-        connection.commit()
-        mycursor.close()
-        # mycursor.execute (sql, (row[1], row[2]))
-       # print(', '.join(row))
+insert_movies()
+insert_links()
+insert_ratings()
+insert_tags()
+# disconnect from server
+connection.close()
